@@ -13,6 +13,8 @@ import 'screens/loading_ip_screen.dart';
 import 'screens/bin_input_screen.dart';
 import 'screens/loading_bin_screen.dart';
 import 'screens/settings_screen.dart';
+import 'screens/email_input_screen.dart';
+import 'screens/loading_email_screen.dart';
 
 void main() {
   runApp(const VkInsightApp());
@@ -39,6 +41,7 @@ class VkInsightApp extends StatelessWidget {
         '/input_domain': (_) => const DomainInputScreen(),
         '/input_ip': (_) => const IpInputScreen(),
         '/input_bin': (_) => const BinInputScreen(),
+        '/input_email': (_) => const EmailInputScreen(),
         '/settings': (_) => const SettingsScreen(),
       },
       onGenerateRoute: (settings) {
@@ -70,6 +73,20 @@ class VkInsightApp extends StatelessWidget {
           );
         }
 
+        if (settings.name == '/loading_bin') {
+          final binOrCard = settings.arguments as String;
+          return MaterialPageRoute(
+            builder: (_) => LoadingBinScreen(binOrCard: binOrCard),
+          );
+        }
+
+        if (settings.name == '/loading_email') {
+          final email = settings.arguments as String;
+          return MaterialPageRoute(
+            builder: (_) => LoadingEmailScreen(email: email),
+          );
+        }
+
         if (settings.name == '/text_result') {
           final text = settings.arguments as String;
           return MaterialPageRoute(
@@ -83,12 +100,6 @@ class VkInsightApp extends StatelessWidget {
             builder: (_) => ReportScreen(htmlContent: html),
           );
         }
-        if (settings.name == '/loading_bin') {
-          final binOrCard = settings.arguments as String;
-          return MaterialPageRoute(
-            builder: (_) => LoadingBinScreen(binOrCard: binOrCard),
-            );
-            }
 
         return null;
       },

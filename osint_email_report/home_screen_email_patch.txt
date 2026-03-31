@@ -1,0 +1,7 @@
+
+// HomeScreen.dart — добавь кнопку
+buildButton(
+  'Поиск по email',
+  () => Navigator.pushNamed(context, '/input_email'),
+),
+const SizedBox(height: 16),

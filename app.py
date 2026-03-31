@@ -7,12 +7,16 @@ from PhoneOsint import phone_search
 import ip
 from dotenv import load_dotenv
 import binosint
+from email_osint import run_email_osint, build_email_report_html
+from smtp_check import check_email_smtp
+import traceback
 
 app = Flask(__name__)
 
 LAST_REPORT_PATH = "vk_insight_report.html"
 LAST_DOMAIN_REPORT_PATH = "domain_insight_report.html"
 LAST_IP_REPORT_PATH = "ip_insight_report.html"
+LAST_EMAIL_REPORT_PATH = "email_insight_report.html"
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -178,6 +182,13 @@ def analyze():
     if not link:
         return jsonify({"ok": False, "error": "Ссылка не передана"}), 400
 
+    vk_api = read_vk_api()
+    if not vk_api:
+        return jsonify({
+            "ok": False,
+            "error": "Сначала укажите VK API в настройках"
+        }), 400
+
     try:
         print(f"[ANALYZE] start: {link}")
 
@@ -196,7 +207,6 @@ def analyze():
             "ok": False,
             "error": str(e)
         }), 500
-
 
 @app.route("/phone_search", methods=["POST"])
 def phone_search_route():
@@ -218,6 +228,46 @@ def phone_search_route():
             "error": str(e)
         }), 500
 
+
+
+@app.route("/email_report.css", methods=["GET"])
+def email_report_css():
+    css_path = os.path.join(os.getcwd(), "htmls", "email_report.css")
+    return send_file(css_path, mimetype="text/css")
+
+@app.route("/report/email/latest", methods=["GET"])
+def latest_email_report():
+    if not os.path.exists(LAST_EMAIL_REPORT_PATH):
+        return "Email report not found", 404
+    return send_file(LAST_EMAIL_REPORT_PATH)
+
+@app.route("/email_analyze", methods=["POST"])
+def email_analyze():
+    global LAST_EMAIL_REPORT_PATH
+
+    data = request.get_json(silent=True) or {}
+    email = data.get("email", "").strip()
+
+    if not email:
+        return jsonify({"ok": False, "error": "Email не передан"}), 400
+
+    try:
+        print(f"[EMAIL] start: {email}")
+        result = asyncio.run(run_email_osint(email))
+        report_path = build_email_report_html(result, output_path="email_osint_report.html")
+        LAST_EMAIL_REPORT_PATH = report_path
+        print(f"[EMAIL] done: {report_path}")
+
+        return jsonify({
+            "ok": True,
+            "report_url": "http://127.0.0.1:5000/report/email/latest"
+        })
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({
+            "ok": False,
+            "error": str(e)
+        }), 500
 
 @app.route("/domain_analyze", methods=["POST"])
 def domain_analyze():

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Insight Report</title>
+    <link rel="stylesheet" href="{css_url}">
+</head>
+<body>
+    <div class="page-shell">
+        <div class="header">
+            <div class="eyebrow">OSINT EMAIL REPORT</div>
+            <h1>EMAIL INSIGHT REPORT</h1>
+            <div class="target-box">
+                <div class="target-mail">{target_email}</div>
+                <div class="target-user">username: {username}</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 Сводка</h2>
+            <div class="metrics-grid">
+                {metrics_html}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📮 Провайдеры и алиасы из Mailcat</h2>
+            <div class="section-hint">Формат: логотип провайдера, email, домен почтового сервиса</div>
+            <div class="section-counter">Найдено: {mailcat_count}</div>
+            <div class="result-list">
+                {mailcat_html}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🕳️ Подтвержденные площадки из Holehe</h2>
+            <div class="section-hint">Holehe проверил: {holehe_checked}</div>
+            <div class="section-counter">Найдено: {holehe_count}</div>
+            <div class="result-list">
+                {holehe_html}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🕊️ Совпадения из Blackbird</h2>
+            <div class="section-hint">Blackbird проверил: {blackbird_checked} • Время: {blackbird_duration}</div>
+            <div class="section-counter">Найдено: {blackbird_count}</div>
+            <div class="result-list">
+                {blackbird_html}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⚠️ Ошибки/ограничения Holehe</h2>
+            {errors_html}
+        </div>
+
+        <div class="section">
+            <h2>🧪 Техническое состояние запуска</h2>
+            <div class="status-grid">
+                <div class="status-card">
+                    <span>Holehe</span>
+                    <b>{holehe_code}</b>
+                </div>
+                <div class="status-card">
+                    <span>Mailcat</span>
+                    <b>{mailcat_code}</b>
+                </div>
+                <div class="status-card">
+                    <span>Blackbird</span>
+                    <b>{blackbird_code}</b>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Email Insight System
+        </div>
+    </div>
+</body>
+</html>

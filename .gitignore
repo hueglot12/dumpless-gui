@@ -14,6 +14,13 @@ migrate_working_dir/
 .env
 Maryam/
 venv/
+blackbird/
+mailcar/
+holehe/
+build_bundle.sh
+start_app.bat
+first_run.ps1
+same_lastname/
 
 # IntelliJ related
 *.iml

@@ -44,34 +44,41 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              buildButton(
-                'Поиск по ВКонтакте',
-                () => Navigator.pushNamed(context, '/input_vk'),
-              ),
-              const SizedBox(height: 16),
-              buildButton(
-                'Поиск по номеру',
-                () => Navigator.pushNamed(context, '/input_phone'),
-              ),
-              const SizedBox(height: 16),
-              buildButton(
-                'Поиск по домену',
-                () => Navigator.pushNamed(context, '/input_domain'),
-              ),
-              const SizedBox(height: 16),
-              buildButton(
-                'Поиск по IP',
-                () => Navigator.pushNamed(context, '/input_ip'),
-              ),
-              const SizedBox(height: 16),
-              buildButton(
-                'Поиск по карте',
-                () => Navigator.pushNamed(context, '/input_bin'),
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                buildButton(
+                  'Поиск по ВКонтакте',
+                  () => Navigator.pushNamed(context, '/input_vk'),
+                ),
+                const SizedBox(height: 16),
+                buildButton(
+                  'Поиск по номеру',
+                  () => Navigator.pushNamed(context, '/input_phone'),
+                ),
+                const SizedBox(height: 16),
+                buildButton(
+                  'Поиск по email',
+                  () => Navigator.pushNamed(context, '/input_email'),
+                ),
+                const SizedBox(height: 16),
+                buildButton(
+                  'Поиск по домену',
+                  () => Navigator.pushNamed(context, '/input_domain'),
+                ),
+                const SizedBox(height: 16),
+                buildButton(
+                  'Поиск по IP',
+                  () => Navigator.pushNamed(context, '/input_ip'),
+                ),
+                const SizedBox(height: 16),
+                buildButton(
+                  'Поиск по карте',
+                  () => Navigator.pushNamed(context, '/input_bin'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

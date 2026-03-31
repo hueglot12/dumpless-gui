@@ -67,6 +67,21 @@ class ApiService {
 
     return data['report_url'] as String;
   }
+    static Future<String> analyzeEmail(String email) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/email_analyze'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'email': email}),
+    );
+
+    final data = jsonDecode(response.body);
+
+    if (response.statusCode != 200) {
+      throw Exception(data['error'] ?? 'Ошибка сервера');
+    }
+
+    return data['report_url'] as String;
+  }
 
   static Future<String> searchBin(String binOrCard) async {
     final response = await http.post(

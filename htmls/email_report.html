@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Insight Report</title>
+    <link rel="stylesheet" href="{css_url}">
+</head>
+<body>
+    <div class="header">
+        <h1>EMAIL INSIGHT REPORT</h1>
+        <h3>{target_email}</h3>
+    </div>
+
+    <div class="section">
+        <h2>📊 Сводка</h2>
+        <div class="metrics">
+            {metrics_html}
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📬 Mailcat</h2>
+        <p><b>Найдено:</b> {mailcat_count}</p>
+        <div class="results-wrap">
+            {mailcat_html}
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🌐 Holehe</h2>
+        <p><b>Найдено:</b> {holehe_count} | <b>Проверено сайтов:</b> {holehe_checked}</p>
+        <div class="results-wrap">
+            {holehe_html}
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🛰️ Blackbird</h2>
+        <p><b>Найдено:</b> {blackbird_count} | <b>Проверено сайтов:</b> {blackbird_checked} | <b>Время:</b> {blackbird_duration}</p>
+        <div class="results-wrap">
+            {blackbird_html}
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📨 SMTP статус</h2>
+        <div class="smtp-box">
+            <div class="smtp-status-line">
+                <span class="activity-dot {activity_class}"></span>
+                <span class="smtp-status-text" style="color:{activity_color}">{activity_label}</span>
+            </div>
+            <p><b>Статус:</b> {smtp_status}</p>
+            <p><b>Этап:</b> {smtp_stage}</p>
+            <p><b>MX:</b> {smtp_mx_host}</p>
+            <p><b>SMTP код:</b> {smtp_code}</p>
+            <p><b>SMTP сообщение:</b> {smtp_message}</p>
+            <p><b>Детали:</b> {smtp_detail}</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>⚠️ Ошибки Holehe</h2>
+        {errors_html}
+    </div>
+
+    <div class="section">
+        <h2>🛠 Коды завершения</h2>
+        <p><b>Holehe:</b> {holehe_code}</p>
+        <p><b>Mailcat:</b> {mailcat_code}</p>
+        <p><b>Blackbird:</b> {blackbird_code}</p>
+    </div>
+
+    <div class="footer">
+        Email Insight System
+    </div>
+</body>
+</html>

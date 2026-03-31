@@ -1,0 +1,262 @@
+body {
+    margin: 0;
+    padding: 20px;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.page-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.header {
+    background: linear-gradient(135deg, #111111, #1d1d1d);
+    border: 1px solid #242424;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.eyebrow {
+    color: #8b8b8b;
+    font-size: 12px;
+    letter-spacing: 1.8px;
+    margin-bottom: 8px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.target-box {
+    margin-top: 18px;
+    padding: 16px 18px;
+    background: #0b0b0b;
+    border: 1px solid #222;
+    border-radius: 14px;
+}
+
+.target-mail {
+    font-size: 23px;
+    font-weight: 700;
+    word-break: break-all;
+}
+
+.target-user {
+    margin-top: 6px;
+    color: #a0a0a0;
+    font-size: 14px;
+}
+
+.section {
+    margin-top: 20px;
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+h2 {
+    margin: 0 0 14px 0;
+    font-size: 22px;
+    border-left: 5px solid #ffffff;
+    padding-left: 12px;
+}
+
+.section-hint {
+    color: #9d9d9d;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.section-counter {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 8px 12px;
+    background: #171717;
+    border: 1px solid #272727;
+    border-radius: 999px;
+    font-size: 13px;
+    color: #d7d7d7;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+}
+
+.metric {
+    background: #0d0d0d;
+    border: 1px solid #232323;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.metric-title {
+    color: #a0a0a0;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.metric-value {
+    font-size: 28px;
+    font-weight: 800;
+    word-break: break-word;
+}
+
+.metric-sub {
+    margin-top: 8px;
+    color: #c9c9c9;
+    font-size: 13px;
+}
+
+.result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.result-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: #0b0b0b;
+    border: 1px solid #202020;
+    border-radius: 16px;
+    padding: 14px 16px;
+}
+
+.result-main {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.result-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.result-text {
+    min-width: 0;
+}
+
+.result-title {
+    font-size: 16px;
+    font-weight: 700;
+    word-break: break-all;
+}
+
+.result-subtitle {
+    color: #9f9f9f;
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+.result-domain {
+    color: #dfdfdf;
+    font-size: 14px;
+    text-align: right;
+    word-break: break-all;
+}
+
+.result-link {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px dashed #5e5e5e;
+}
+
+.result-link:hover {
+    color: #cfcfcf;
+}
+
+.empty-block {
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px dashed #333;
+    color: #9a9a9a;
+    background: #0b0b0b;
+}
+
+.simple-list {
+    margin: 0;
+    padding-left: 20px;
+    color: #e6e6e6;
+}
+
+.simple-list li + li {
+    margin-top: 8px;
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.status-card {
+    background: #0b0b0b;
+    border: 1px solid #202020;
+    border-radius: 14px;
+    padding: 16px;
+}
+
+.status-card span {
+    display: block;
+    color: #9f9f9f;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.status-card b {
+    font-size: 22px;
+}
+
+.footer {
+    text-align: center;
+    margin: 28px 0 6px 0;
+    color: #6f6f6f;
+    font-size: 12px;
+}
+
+@media (max-width: 760px) {
+    body {
+        padding: 14px;
+    }
+
+    .header,
+    .section {
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .result-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .result-domain {
+        text-align: left;
+        width: 100%;
+    }
+}

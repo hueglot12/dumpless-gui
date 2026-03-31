@@ -1,0 +1,15 @@
+
+// main.dart — добавь imports
+import 'screens/email_input_screen.dart';
+import 'screens/loading_email_screen.dart';
+
+// routes
+'/input_email': (_) => const EmailInputScreen(),
+
+// onGenerateRoute
+if (settings.name == '/loading_email') {
+  final email = settings.arguments as String;
+  return MaterialPageRoute(
+    builder: (_) => LoadingEmailScreen(email: email),
+  );
+}

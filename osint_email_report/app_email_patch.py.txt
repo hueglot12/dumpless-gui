@@ -1,0 +1,58 @@
+
+# app.py — добавь сверху
+import email_osint
+
+LAST_EMAIL_REPORT_PATH = "email_insight_report.html"
+
+@app.route("/email_report.css", methods=["GET"])
+def email_report_css():
+    css_path = os.path.join(os.getcwd(), "htmls", "email_report.css")
+    return send_file(css_path, mimetype="text/css")
+
+
+@app.route("/report/email/latest", methods=["GET"])
+def latest_email_report():
+    if not os.path.exists(LAST_EMAIL_REPORT_PATH):
+        return "Email report not found", 404
+    return send_file(LAST_EMAIL_REPORT_PATH)
+
+
+@app.route("/email_analyze", methods=["POST"])
+def email_analyze():
+    global LAST_EMAIL_REPORT_PATH
+
+    data = request.get_json(silent=True) or {}
+    email_value = data.get("email", "").strip().lower()
+
+    if not email_value or "@" not in email_value:
+        return jsonify({"ok": False, "error": "Email не передан"}), 400
+
+    try:
+        result = asyncio.run(
+            email_osint.run_email_osint(
+                email_value,
+                holehe_cmd=["holehe", email_value],
+                mailcat_cmd=["python", "mailcat.py", email_value.split("@", 1)[0]],
+                blackbird_cmd=["python", "blackbird.py", "-e", email_value],
+                # если утилиты лежат в отдельных папках — укажи cwd:
+                # mailcat_cwd="/home/apogey/Изображения/osint/mailcat",
+                # blackbird_cwd="/home/apogey/Изображения/osint/blackbird",
+            )
+        )
+
+        report_path = email_osint.build_email_report_html(
+            result,
+            css_url="http://127.0.0.1:5000/email_report.css",
+            output_path="email_insight_report.html",
+        )
+        LAST_EMAIL_REPORT_PATH = report_path
+
+        return jsonify({
+            "ok": True,
+            "report_url": "http://127.0.0.1:5000/report/email/latest"
+        })
+    except Exception as e:
+        return jsonify({
+            "ok": False,
+            "error": str(e)
+        }), 500
