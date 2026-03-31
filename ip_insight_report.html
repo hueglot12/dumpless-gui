@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>IP Insight Report</title>
+    <link rel="stylesheet" href="http://127.0.0.1:5000/files/htmls/ip.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+</head>
+<body>
+    <div class="header">
+        <h1>IP INSIGHT REPORT</h1>
+        <h3>1.1.1.1</h3>
+    </div>
+
+    <div class="section">
+        <h2>🌍 Основная информация</h2>
+        <div class="info-grid">
+            <div class="info-card"><b>Страна:</b><br>Австралия (AU)</div>
+            <div class="info-card"><b>Регион:</b><br>Штат Квинсленд</div>
+            <div class="info-card"><b>Город:</b><br>South Brisbane</div>
+            <div class="info-card"><b>Индекс:</b><br>4101</div>
+            <div class="info-card"><b>Часовой пояс:</b><br>Australia/Brisbane</div>
+            <div class="info-card"><b>Провайдер:</b><br>Cloudflare, Inc</div>
+            <div class="info-card"><b>Организация:</b><br>APNIC and Cloudflare DNS Resolver project</div>
+            <div class="info-card"><b>AS:</b><br>AS13335 Cloudflare, Inc.</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🗺️ Карта</h2>
+        <p><b>Локация:</b> South Brisbane, Штат Квинсленд, Австралия</p>
+        <div id="map"></div>
+    </div>
+
+    <div class="section">
+        <h2>🏢 Объекты поблизости</h2>
+        <details class="places-box" open>
+            <summary>Открыть / закрыть список</summary>
+            <div class="places-content">
+                <ul class="places-list">
+                    <li>Поблизости ничего не найдено</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <div class="footer">
+        IP Insight System
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const lat = -27.4766;
+        const lon = 153.0166;
+
+        if (lat !== null && lon !== null) {
+            const map = L.map('map').setView([lat, lon], 12);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            L.marker([lat, lon]).addTo(map).bindPopup('<b>1.1.1.1</b><br>South Brisbane, Штат Квинсленд, Австралия').openPopup();
+
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>IP Insight Report</title>
+    <link rel="stylesheet" href="http://127.0.0.1:5000/files/htmls/ip.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+</head>
+<body>
+    <div class="header">
+        <h1>IP INSIGHT REPORT</h1>
+        <h3>{ip}</h3>
+    </div>
+
+    <div class="section">
+        <h2>🌍 Основная информация</h2>
+        <div class="info-grid">
+            <div class="info-card"><b>Страна:</b><br>{country} ({country_code})</div>
+            <div class="info-card"><b>Регион:</b><br>{region}</div>
+            <div class="info-card"><b>Город:</b><br>{city}</div>
+            <div class="info-card"><b>Индекс:</b><br>{zip_code}</div>
+            <div class="info-card"><b>Часовой пояс:</b><br>{timezone}</div>
+            <div class="info-card"><b>Провайдер:</b><br>{isp}</div>
+            <div class="info-card"><b>Организация:</b><br>{org}</div>
+            <div class="info-card"><b>AS:</b><br>{as_name}</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🗺️ Карта</h2>
+        <p><b>Локация:</b> {maps_label}</p>
+        <div id="map"></div>
+    </div>
+
+    <div class="section">
+        <h2>🏢 Объекты поблизости</h2>
+        <details class="places-box" open>
+            <summary>Открыть / закрыть список</summary>
+            <div class="places-content">
+                <ul class="places-list">
+                    {places_html}
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <div class="footer">
+        IP Insight System
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const lat = {lat};
+        const lon = {lon};
+
+        if (lat !== null && lon !== null) {{
+            const map = L.map('map').setView([lat, lon], 12);
+
+            L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            }}).addTo(map);
+
+            L.marker([lat, lon]).addTo(map).bindPopup('<b>{ip}</b><br>{maps_label}').openPopup();
+
+            {markers_js}
+        }}
+    </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>VK Insight Report</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f4f6f9; margin:0; padding:20px; color:#2c3e50; }
+.header { background:linear-gradient(135deg,#4e73df,#1cc88a); color:white; padding:25px; border-radius:12px; }
+.section { background:white; margin-top:20px; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05); }
+h2 { margin-top:0; border-left:5px solid #4e73df; padding-left:10px; }
+.metrics { display:flex; gap:20px; flex-wrap:wrap; }
+.metric { background:#eef2ff; padding:15px; border-radius:10px; flex:1; min-width:180px; text-align:center; }
+.metric h3 { margin:0; font-size:22px; color:#4e73df; }
+.friend-list li { margin-bottom:6px; }
+.cluster {
+    display:inline-block;
+    padding:8px 14px;
+    margin:6px;
+    border-radius:20px;
+    color:white;
+    font-weight:bold;
+    font-size:13px;
+}
+.footer { text-align:center; margin-top:30px; font-size:12px; color:#7f8c8d; }
+.avatar { width:120px; border-radius:50%; margin-top:10px; }
+.node-img {
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid white;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    cursor:pointer;
+    transition:transform .2s ease;
+}
+.node-img:hover {
+    transform:scale(1.08);
+}
+.node-label {
+    text-align:center;
+    font-size:12px;
+    margin-top:6px;
+    width:90px;
+}
+.graph-container {
+    position:relative;
+    width:100%;
+    height:480px;
+}
+.center-node {
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    text-align:center;
+}
+.relative-node {
+    position:absolute;
+    text-align:center;
+    width:90px;
+}
+svg {
+    position:absolute;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+}
+line {
+    stroke:#d1d3e2;
+    stroke-width:2;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>VK INSIGHT REPORT</h1>
+    <h3>Pavel Durov</h3>
+    <img src="https://vk.com/images/camera_200.png" class="avatar">
+</div>
+
+<div class="section">
+    <h2>📌 Основная информация</h2>
+    <p><b>VK ID:</b> 1</p>
+    <p><b>Город:</b> Saint Petersburg</p>
+    <p><b>Дата рождения:</b> 10.10.1984</p>
+    <p><b>Статус:</b> 道德經</p>
+</div>
+
+<div class="section">
+    <h2>📊 Профильные метрики</h2>
+    <div class="metrics">
+        <div class="metric"><h3>4753744</h3>Подписчики</div>
+        <div class="metric"><h3>100%</h3>Заполненность профиля</div>
+        <div class="metric"><h3>0</h3>Однофамильцы</div>
+        <div class="metric"><h3>0♂ / 0♀</h3>Гендер однофамильцев</div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>👥 Друзья (превью)</h2>
+    <ul class="friend-list"><li>Список скрыт</li></ul>
+</div>
+
+<div class="section">
+    <h2>🌍 Кластеры однофамильцев по городам</h2>
+    <div class='cluster'>Нет данных</div>
+</div>
+
+<div class="section">
+    <h2>🕸 Связь с однофамильцами</h2>
+    <div class="graph-container">
+        <svg id="lines"></svg>
+        <div class="center-node">
+            <img src="https://vk.com/images/camera_200.png" class="node-img">
+            <div class="node-label"><b>Pavel<br>Durov</b></div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    Отчёт сформирован: 31.03.2026 11:46<br>
+    VK Insight System
+</div>
+
+<script>
+const data = [];
+const container = document.querySelector(".graph-container");
+const svg = document.getElementById("lines");
+
+const centerX = container.clientWidth / 2;
+const centerY = container.clientHeight / 2;
+const radius = 180;
+
+function drawLine(x1,y1,x2,y2){
+    const line=document.createElementNS("http://www.w3.org/2000/svg","line");
+    line.setAttribute("x1",x1);
+    line.setAttribute("y1",y1);
+    line.setAttribute("x2",x2);
+    line.setAttribute("y2",y2);
+    svg.appendChild(line);
+}
+
+data.forEach((p,i)=>{
+    const angle = data.length ? (i / data.length) * 2 * Math.PI : 0;
+    const x = centerX + radius * Math.cos(angle);
+    const y = centerY + radius * Math.sin(angle);
+
+    const node = document.createElement("div");
+    node.className = "relative-node";
+    node.style.left = (x - 45) + "px";
+    node.style.top = (y - 45) + "px";
+
+    node.innerHTML = `
+        <a href="https://vk.com/${p.domain}" target="_blank">
+            <img src="${p.photo}" class="node-img">
+        </a>
+        <div class="node-label">${p.name}</div>
+    `;
+
+    container.appendChild(node);
+    drawLine(centerX, centerY, x, y);
+});
+</script>
+
+</body>
+</html>

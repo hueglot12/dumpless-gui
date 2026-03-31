@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Domain Insight Report</title>
+    <link rel="stylesheet" href="http://127.0.0.1:5000/domain.css">
+</head>
+<body>
+    <div class="header">
+        <h1>DOMAIN INSIGHT REPORT</h1>
+        <h3>{domain}</h3>
+    </div>
+
+    <div class="section">
+        <h2>🌐 Основная информация</h2>
+        <p><b>Регистратор:</b> {registrar}</p>
+        <p><b>Возраст домена:</b> {age_days} дней</p>
+        <p><b>HTTPS:</b> {https_label}</p>
+    </div>
+
+    <div class="section">
+        <h2>📡 Поддомены</h2>
+        <p><b>Всего найдено:</b> {subdomains_count}</p>
+
+        <div class="suspicious-wrap">
+            <h3>Подозрительные поддомены</h3>
+            <div>{suspicious_html}</div>
+        </div>
+
+        <details class="subdomains-box">
+            <summary>Открыть список поддоменов</summary>
+            <div class="subdomains-content">
+                <ul class="subdomain-list">
+                    {subs_html}
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <div class="section">
+        <h2>⚠️ Anti-Scam оценка</h2>
+        <div class="metric">
+            <h3 style="color:{risk_color}">{risk_score}%</h3>
+            Вероятность фишинга
+        </div>
+    </div>
+
+    <div class="footer">
+        Domain Insight System
+    </div>
+</body>
+</html>
