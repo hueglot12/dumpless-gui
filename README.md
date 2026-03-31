@@ -1,18 +1,20 @@
-# osint
+# Dumpless
 
-A new Flutter project.
+<img width="451" height="359" alt="изображение" src="https://github.com/user-attachments/assets/bb7d8e7a-6a6a-4860-9059-49a372057d2b" />
 
-## Getting Started
+**Dumpless** - Данная утилита по большей мери если не всопмогательнвя то утилита для автоматизации множественных OSINT процессов во время раздведки
 
-This project is a starting point for a Flutter application.
+каждому кто сталкивался с непосредственным поиск и анализом данных постоянно нужно менять между вкладками, хранить большое количество инструментов в голове и самому догадывать последовательность действий в рамках своего кейса
 
-A few resources to get you started if this is your first Flutter project:
+Даннач Утилита Способна
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- Поиск по BIN и банковским картам
+- Анализу Номеров Телефонов
+- Поиску по Вконтакте, выявление социальных связей и составление мерчатов
+- Анализ Доменных и ip адресов, проверки SSL сертификации, анализ угрозы Фишинга, Whois и поиск поддоменов
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# dumpless-gui
+**‼️ На Данный Момент На Этапе Бета Тестрования ‼️**
+
+``- Юридичесое Предупреждения:
+Все данные из открытых источников, утилита не предоставляет  услуги поиска в закрытых API или парсинге сайтов, все абсолютно чисто
+``
